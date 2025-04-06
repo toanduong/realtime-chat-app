@@ -1,10 +1,15 @@
 <!-- login.component.html -->
 
   <div class="min-h-screen bg-gray-100 flex items-center justify-center container-login100">
-    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
-  
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div class="wrap-login100">
+      <div class="login100-pic js-tilt" data-tilt="" style="will-change: transform; transform: perspective(300px) rotateX(0deg) rotateY(0deg);">
+        <img src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png" alt="IMG">
+      </div>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login100-form validate-form">
+        <span class="login100-form-title">
+          Member Login
+        </span>
         <!-- Tenant Dropdown -->
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Tenant</label>
@@ -18,7 +23,7 @@
             </option>
           </select>
         </div>
-  
+        <br/>
         <!-- Username -->
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
@@ -29,7 +34,7 @@
             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>
-  
+        <br/>
         <!-- Password -->
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
@@ -40,7 +45,7 @@
             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-500"
           />
         </div>
-  
+        <br/>
         <!-- Submit Button -->
         <div>
           <button
