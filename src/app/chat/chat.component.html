@@ -1,5 +1,8 @@
 <div id="root">
+  <div>
     <stream-channel-list></stream-channel-list>
+    <stream-user-list [users]="users"></stream-user-list>
+  </div>
     <stream-channel>
       <stream-channel-header></stream-channel-header>
       <stream-message-list></stream-message-list>
@@ -10,5 +13,6 @@
         <stream-message-input mode="thread"></stream-message-input>
       </stream-thread>
     </stream-channel>
+   
   </div>
   

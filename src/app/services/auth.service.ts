@@ -49,4 +49,8 @@ export class AuthService {
       return '';
     }
   }
+
+  getChatUsers(): any {
+    return this.http.get('https://web-api-gwgpaxbweaa6efdn.southeastasia-01.azurewebsites.net/api/chat/users');
+  }
 }

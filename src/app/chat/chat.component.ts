@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StreamService } from '../services/stream.service';
 import { Channel, StreamChat } from 'stream-chat';
+import { AuthService } from '../services/auth.service';
 import {
   ChannelService,
   ChatClientService,
@@ -27,9 +28,11 @@ export class ChatComponent implements OnInit {
   messages: any[] = [];
   newMessage: string = '';
   userId: string = '';
+  users: any[] = [];
 
   constructor(private chatService: ChatClientService,
     private channelService: ChannelService,
+    private authenService: AuthService,
     private streamI18nService: StreamI18nService,) {
 
       const userId = localStorage.getItem('userid');
@@ -49,6 +52,8 @@ export class ChatComponent implements OnInit {
 
         this.chatService.init(apiKey, userId, userToken);
         this.streamI18nService.setTranslation();
+
+        this.users = this.authenService.getChatUsers();
       }
     }
 
@@ -57,5 +62,20 @@ export class ChatComponent implements OnInit {
       type: 'messaging',
       members: { $in: [this.userId] },
     });
+
+    
+    //this.users = await this.getUsers();
+    //console.log(this.users);
+  }
+
+  async getUsers() {
+    const serverClient = StreamChat.getInstance('7fxyyfbvwwae', 'qw5bn22dpqawm55t4av6g6x6nxvggpnfkbhfnnybptuzpcuh6zx2d8v8dtd9yz9h');
+    const response = await serverClient.queryUsers(
+      {}, // filter (e.g. { role: 'user' })
+      { id: 1 }, // sort by id
+      { limit: 30 } // pagination
+    );
+    
+    return response.users;
   }
 }
